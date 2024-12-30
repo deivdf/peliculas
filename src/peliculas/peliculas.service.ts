@@ -4,24 +4,27 @@ import { db } from 'src/db/dbConect';
 import { eq } from 'drizzle-orm';
 import { peliculas } from 'src/Interfaces/peliculas.interface';
 
-
 @Injectable()
 export class PeliculasService {
 
-    getAll(){
-        return db.select().from(Pelicula).execute();
+    async getAll(){
+        const obtener = await db.select().from(Pelicula).execute();
+        return obtener;
     }
-    create(pelicula: any){
-        return db.insert(Pelicula).values(pelicula).execute();
+    async create(pelicula: any){
+       const create = await db.insert(Pelicula).values(pelicula).execute();
+       return create;
     }
-     update(id: number, pelicula: Partial<peliculas>){
-       
-        return db.update(Pelicula).set(pelicula).where(eq(Pelicula.id, id)).execute();
+    async update(id: number, pelicula: Partial<peliculas>){
+        const actualizar = await db.update(Pelicula).set(pelicula).where(eq(Pelicula.id, id)).execute();
+        return actualizar;
     }
-    delete(id: number){
-        return db.delete(Pelicula).where(eq(Pelicula.id, id)).execute();
+    async delete(id: number){
+        const eliminar = await db.delete(Pelicula).where(eq(Pelicula.id, id)).execute();
+        return eliminar;
     }
-    updateState(){
-        return 'actualizando parcialmente pelicula';
+    async updateState(id: number, pelicula: Partial<peliculas>){
+       const actualizaPartial = await db.update(Pelicula).set(pelicula).where(eq(Pelicula.id, id)).execute();
+       return actualizaPartial;
     }
 }
