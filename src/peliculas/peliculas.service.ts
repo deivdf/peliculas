@@ -11,6 +11,10 @@ export class PeliculasService {
         const obtener = await db.select().from(Pelicula).execute();
         return obtener;
     }
+    async getOne(id: number){
+        const obtenerUno = await db.select().from(Pelicula).where(eq(Pelicula.id, id)).execute();
+        return obtenerUno;
+    }
     async create(pelicula: any){
        const create = await db.insert(Pelicula).values(pelicula).execute();
        return create;

@@ -12,6 +12,10 @@ export class PeliculasController {
     getAllPeliculas(@Query() query: any){
         return this.peliculasService.getAll();
     }
+    @Get('/:id')
+    getOnePelicula(@Param('id') id: number){
+        return this.peliculasService.getOne(id);
+    }
     @Post()
     createPelicula(@Body() pelicula: peliculas){
         console.log(pelicula);

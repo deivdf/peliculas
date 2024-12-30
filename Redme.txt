@@ -1,0 +1,22 @@
+Instalar dependencias
+$ npm install
+Iniciar servidor
+$ npm start:dev
+
+para correr la base de datos en un contenedor de docker
+base de datos postgres
+$ docker-compose up
+las credenciales esta en el archivo yml
+
+comando para correr las migraciones con drizzle
+$ drizzle-kit migrate
+$ drizzle-kit generate
+$ drizzle-kit push
+$ drizzle-kit pull
+
+endpoint de la api en local
+Get http://localhost:3000/peliculas/
+Post http://localhost:3000/peliculas/
+Put http://localhost:3000/peliculas/:id
+Delete http://localhost:3000/peliculas/:id
+Patch http://localhost:3000/peliculas/:id
