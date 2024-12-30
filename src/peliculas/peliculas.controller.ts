@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
 import { PeliculasService } from './peliculas.service';
 import { Pelicula } from 'src/db/schemas/pelicula';
+import { peliculas } from 'src/Interfaces/peliculas.interface';
 
 @Controller('/peliculas')
 export class PeliculasController {
@@ -9,21 +10,21 @@ export class PeliculasController {
        this.peliculasService = peluclasService;
     }
     @Get()
-    getAllPeliculas(){
+    getAllPeliculas(@Query() query: any){
         return this.peliculasService.getAll();
     }
     @Post()
-    createPelicula(@Body() pelicula: any){
+    createPelicula(@Body() pelicula: peliculas){
         console.log(pelicula);
         return this.peliculasService.create(pelicula);
     }
-    @Put()
-    updatePelicula(){
-        return this.peliculasService.update();
+    @Put('/:id')
+    updatePelicula(@Param('id') id: number, @Body() pelicula: Partial<peliculas>){
+        return this.peliculasService.update(id, pelicula);
     }
-    @Delete()
-    deletePelicula(){
-        return this.peliculasService.delete();
+    @Delete('/:id')
+    deletePelicula(@Param('id') id: number){
+        return this.peliculasService.delete(id)
     }
     @Patch()
     updatePartialPelicula(){

@@ -1,4 +1,4 @@
-export interface pelicula {
+export interface peliculas {
     id: number;
     title: string;
     year: string;
@@ -10,4 +10,5 @@ export interface pelicula {
     writer: string;
     actors: string;
     plot: string;
+    [key: string]: any;
 }
